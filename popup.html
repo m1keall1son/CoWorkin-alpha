@@ -5,14 +5,27 @@
     <script type="text/javascript" src="jquery-1.10.2.js"></script>
 
             <style type="text/css">
+           
     .working { background:blue; }
-    .notWorking { background:red; }
+    #signin { background:#0c7cab; color:white; font-size:20px; font-family:helvetica; padding:10px; }
+    h1 {
+      color:#0c7cab;
+      font-size:30px;
+    }
 
-
+    #info {
+      font-style: italic;
+      color:#333;
+    }
 
      body {
-        min-width: 357px;
         overflow-x: hidden;
+        background-color: #f0f0f0;
+              font-family: helvetica;
+              font-size: 16px;
+              background-image: url("chrome-extension://dcchnonkikcdakmnnbbnadcgcpnclodd/main.png");
+              background-repeat: no-repeat;
+              background-position:  right ;
       }
 
       img {
@@ -25,8 +38,13 @@
       </style>
   </head>
   <body > 
-    <div id="user_info"></div>
-    <button id="signin" style="display:none">Sign in</button>
+    <div id="user_info">
+      <h1>Weolcome to Co-Workin'!</h1>
+      <span id="info">
+        Co-Workin' is a motivational, team building Chrome Extension that ambiently connects co-workers together.  Once you click the coffee mug at the top right tool bar of Chrome you will be co-working and you'll be able to see your fellow coworkers in the pop-out panel located at the lower left corner of any webpage, but first, we need to access some info.  Please click below to complete the installation:
+      </span>
+    </div>
+    <button id="signin" >Allow Access</button>
     <div id="sql"></div>
 
 

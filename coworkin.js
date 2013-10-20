@@ -34,6 +34,7 @@ function setWorkingIcon(isWorking) {
       updateTime(curWorkingTime, false);
       chrome.browserAction.setIcon({path:"notworking.png"});
       //clearInterval( timer );
+      //revokeToken();
   }
 
 }
@@ -54,7 +55,7 @@ function setWorking(){
 
 chrome.browserAction.onClicked.addListener(setWorking);
 
-chrome.idle.setDetectionInterval(30);
+chrome.idle.setDetectionInterval(900);
 chrome.idle.onStateChanged.addListener(function (state){
   if(state == 'idle' && working ){
     var logout = false;
@@ -74,7 +75,7 @@ chrome.idle.onStateChanged.addListener(function (state){
   }
 
   function checkTimeout(){
-    if(i > 30) return true;
+    if(i > 120) return true;
     else return false;
     i++;
   }
@@ -103,7 +104,7 @@ function updateTime(time, isWorking) {
    
   request.done(function( responseText ) {
       console.log(responseText);
-      getData(today);
+      //getData(today);
   });
    
   request.fail(function( jqXHR, textStatus ) {
@@ -124,7 +125,7 @@ var request = $.ajax({
  
 request.done(function( responseText ) {
     console.log(responseText);
-    getData(today);
+    //getData(today);
 });
  
 request.fail(function( jqXHR, textStatus ) {
@@ -240,20 +241,18 @@ var checkDbforUser = function (username) {
       myName = user;
       checkDbforUser(user);
 
-
-
       populateUserInfo(user_info);
       //hide the sign in button
       hideButton(signin_button);
       //show the revoke token button
       showButton(revoke_button);
     } else {
+
+
+
       //the request had an error so you have to sign in manually
-
-      //popup
-
       showButton(signin_button);
-
+      window.open("chrome-extension://dcchnonkikcdakmnnbbnadcgcpnclodd/popup.html");
     }
   }
 
@@ -296,7 +295,7 @@ var checkDbforUser = function (username) {
   }
 
   function revokeToken() {
-    if (revoke_button_token) {
+    //if (revoke_button_token) {
       // Make a request to revoke token
       var xhr = new XMLHttpRequest();
       xhr.open('GET', 'https://accounts.google.com/o/oauth2/revoke?token=' +
@@ -307,7 +306,7 @@ var checkDbforUser = function (username) {
       hideButton(revoke_button);
       user_info_div.textContent = '';
       showButton(signin_button);
-    }
+   // }
   }
 
    function init () {
