@@ -62,7 +62,7 @@ function secondsTimeSpanToHMS(s) {
     s -= h*3600;
     var m = Math.floor(s/60); //Get remaining minutes
     s -= m*60;
-    return h+":"+(m < 10 ? '0'+m : m)+":"+(s < 10 ? '0'+s : s); //zero padding on minutes and seconds
+    return h+":"+(m < 10 ? '0'+m : m)+"<span class='sec'>:"+(s < 10 ? '0'+s : s)+"</span>"; //zero padding on minutes and seconds
 }
 
 function parseInfo (text) {
